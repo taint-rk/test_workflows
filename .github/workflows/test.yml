@@ -5,3 +5,6 @@ on:
 
 jobs:
   deploy-s3:
+    name: Upload assets to S3
+    runs-on: ubuntu-latest
+    steps:
