@@ -9,9 +9,3 @@ on:
       - RIKKEI-857
       
   workflow_dispatch:
-    inputs:
-      branch:
-        description: 'Branch to deploy'
-        required: true
-        default: 'dev'
-        type: string
