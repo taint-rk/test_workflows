@@ -7,4 +7,13 @@ jobs:
   deploy-s3:
     name: Upload assets to S3
     runs-on: ubuntu-latest
-    steps:
+    run: |
+      if [[ "${{ github.ref_name }}" == "master" ]]; then
+        echo "ENVIRONMENT=prod" >> $GITHUB_OUTPUT
+      elif [[ "${{ github.ref_name }}" == "test" ]]; then
+        echo "ENVIRONMENT=test" >> $GITHUB_OUTPUT
+      elif [[ "${{ github.ref_name }}" == "dev" ]]; then
+        echo "ENVIRONMENT=dev" >> $GITHUB_OUTPUT
+      else
+        echo "ENVIRONMENT=dev2" >> $GITHUB_OUTPUT
+      fi
