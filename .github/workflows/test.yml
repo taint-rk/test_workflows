@@ -1,11 +1,22 @@
 name: Deploy Cdk Environment
 run-name: Deploy branch ${{ github.ref_name }} by @${{ github.actor }}
-on:
-  push:
-    branches:
-      - master
-      - test
-      - dev
-      - RIKKEI-857
-      
+on:  
   workflow_dispatch:
+
+jobs:
+  deploy-s3:
+    name: Upload assets to S3
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up environment
+        id: env
+        run: |
+          if [[ "${{ github.ref_name }}" == "master" ]]; then
+            echo "ENVIRONMENT=prod" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.ref_name }}" == "test" ]]; then
+            echo "ENVIRONMENT=test" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.ref_name }}" == "dev" ]]; then
+            echo "ENVIRONMENT=dev" >> $GITHUB_OUTPUT
+          else
+            echo "ENVIRONMENT=dev2" >> $GITHUB_OUTPUT
+          fi
