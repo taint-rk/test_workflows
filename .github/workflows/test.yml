@@ -1,11 +1,7 @@
 name: Deploy Cdk Environment
 run-name: Deploy branch ${{ github.ref_name }} by @${{ github.actor }}
-on:
-  push:
-    branches:
-      - master
-      - test
-      - dev
-      - RIKKEI-857
-      
+on:  
   workflow_dispatch:
+
+jobs:
+  deploy-s3:
