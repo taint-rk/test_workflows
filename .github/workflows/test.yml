@@ -38,5 +38,9 @@ jobs:
 
       - name: Send Email
         run: |
-          node .github/scripts/send-email.mjs
+          node .github/scripts/send-email.mjs BRANCH_NAME="${{ github.ref_name }}" ACTOR="${{ github.actor }}"
+          if [ $? -ne 0 ]; then
+            echo "Error: Failed to send email"
+            exit 1
+          fi
   

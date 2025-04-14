@@ -13,9 +13,8 @@ const transporter = nodemailer.createTransport({
 });
 
 (async () => {
-  // Neon API logic ran here, returning values to include in the body of the email.
-  let branch_id = 'little-salad-123';
-  let days = 3;
+  let branch = process.env.BRANCH_NAME;
+  let action = process.env.ACTION;
   let email = 'nguyentantai13031999@gmail.com';
 
   try {
@@ -23,7 +22,7 @@ const transporter = nodemailer.createTransport({
       from: '"Warning | DevOps" <nguyentantai13031999@gmail.com>',
       to: email,
       subject: 'Stale Branch Detected!',
-      html: `Branch: <b>${branch_id}</b> will be deleted in <b>${days}</b> days`,
+      html: `Branch: <b>${branch}</b> have ${action} action!`,
     });
   } catch (error) {
     console.error(error);
