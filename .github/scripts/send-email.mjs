@@ -18,6 +18,7 @@ const branch = process.env.BRANCH_NAME;
 var readme = fs.readFileSync('README.md', 'utf8');
 
 if (readme.includes(`# notification for branch ${branch}`)) {
+  console.log(`The branch ${branch} already exists in the README file.`);
   const htmlTemplate = readme.slice(readme.indexOf(`# notification for branch ${branch}`), readme.indexOf(`# end notification for branch ${branch}`));
 
   (async () => {
