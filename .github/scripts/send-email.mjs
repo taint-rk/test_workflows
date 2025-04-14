@@ -24,7 +24,7 @@ if (readme.includes(`# notification for branch ${branch}`)) {
   (async () => {
     try {
       await transporter.sendMail({
-        from: `Notify the manual actions required after the ${branch} branch is deployed`,
+        from: '"Warning | DevOps" <nguyen.tai@yamata.org>',
         to: 'nguyen.tai@yamata.org',
         subject: `Notify the manual actions required after the ${branch} branch is deployed`,
         html: htmlTemplate,
