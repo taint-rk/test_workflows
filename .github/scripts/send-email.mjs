@@ -3,14 +3,14 @@ import 'dotenv/config';
 import fs from 'fs';
 
 const transporter = nodemailer.createTransport({
-  service: 'Gmail',
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: true,
-  auth: {
-    user: 'nguyentantai13031999@gmail.com',
-    pass: 'rhiuoputwpzvcgrc',
-  },
+    service: process.env.SERVICE,
+    host: process.env.MAIL_HOST,
+    port: process.env.MAIL_PORT,
+    secure: true,
+    auth: {
+        user: process.env.MAIL_USERNAME,
+        pass: process.env.MAIL_PASSWORD,
+    },
 });
 
 const branch = process.env.BRANCH_NAME;

@@ -37,8 +37,15 @@ jobs:
           npm install
 
       - name: Send Email
+        env:
+          BRANCH_NAME: ${{ github.ref_name }}
+          MAIL_HOST: ${{ secrets.SERVER_HOST }}
+          MAIL_PORT: ${{ secrets.MAIL_PORT }}
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+          SERVICE: ${{ secrets.SERVICE }}
         run: |
-          BRANCH_NAME="${{ github.ref_name }}" ACTOR="${{ github.actor }}" node .github/scripts/send-email.mjs
+          node .github/scripts/send-email.mjs
           if [ $? -ne 0 ]; then
             echo "Error: Failed to send email"
             exit 1
