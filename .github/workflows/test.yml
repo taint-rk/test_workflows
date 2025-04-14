@@ -22,7 +22,7 @@ jobs:
           fi
   send-mail:
     runs-on: ubuntu-latest
-
+    environment: prod
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
