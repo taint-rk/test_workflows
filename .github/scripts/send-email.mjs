@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
 
 const branch = process.env.BRANCH_NAME;
 
-var readme = fs.readFileSync('../../README.md', 'utf8');
+var readme = fs.readFileSync('README.md', 'utf8');
 
 if (readme.includes(`# notification for branch ${branch}`)) {
   const htmlTemplate = readme.slice(readme.indexOf(`# notification for branch ${branch}`), readme.indexOf(`# end notification for branch ${branch}`));
