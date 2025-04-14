@@ -1,0 +1,15 @@
+{
+  "name": "test-send-mail",
+  "version": "1.0.0",
+  "description": "adad",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "nodemailer": "^6.10.1"
+  }
+}
