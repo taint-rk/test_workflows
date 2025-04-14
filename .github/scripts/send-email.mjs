@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import 'dotenv/config';
+import fs from 'fs';
 
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
@@ -12,19 +13,23 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-(async () => {
-  let branch = process.env.BRANCH_NAME;
-  let actor = process.env.ACTOR;
-  let email = 'nguyentantai13031999@gmail.com';
+const branch = process.env.BRANCH_NAME;
 
-  try {
-    await transporter.sendMail({
-      from: '"Warning | DevOps" <nguyentantai13031999@gmail.com>',
-      to: email,
-      subject: 'Test send mail from git action!',
-      html: `Branch: <b>${branch}</b> have ${actor} action!`,
-    });
-  } catch (error) {
-    console.error(error);
-  }
-})();
+var readme = fs.readFileSync('../../README.md', 'utf8');
+
+if (readme.includes(`# notification for branch ${branch}`)) {
+  const htmlTemplate = readme.slice(readme.indexOf(`# notification for branch ${branch}`), readme.indexOf(`# end notification for branch ${branch}`));
+
+  (async () => {
+    try {
+      await transporter.sendMail({
+        from: `Notify the manual actions required after the ${branch} branch is deployed`,
+        to: 'nguyen.tai@yamata.org',
+        subject: `Notify the manual actions required after the ${branch} branch is deployed`,
+        html: htmlTemplate,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  })();
+}
